@@ -10,9 +10,71 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.gaming.di.numguess.MainActivity">
 
+    <Button
+        android:text="@string/button_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="ButtonGuess"/>
+
+    <TextView
+        android:text=""
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sample_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="160dp"
+        android:id="@+id/textView" />
+
     <TextView
         android:id="@+id/sample_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/header"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:labelFor="@+id/editText2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:textAlignment="viewEnd"
+        android:layout_toStartOf="@+id/button" />
+
+    <TextView
+        android:text="@string/desc"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/sample_text"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="@string/point_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_above="@+id/button"
+        android:layout_alignStart="@+id/textView2" />
+
+    <TextView
+        android:text="@string/points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/points"
+        android:layout_alignBaseline="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignStart="@+id/sample_text" />
+
 </RelativeLayout>
