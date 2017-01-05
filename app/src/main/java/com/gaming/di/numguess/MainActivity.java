@@ -29,8 +29,12 @@ public class MainActivity extends AppCompatActivity {
 
     public int RandomNum(int currentlevel)
     {
+        TextView info = (TextView)findViewById(R.id.textView2);
         Random newran = new Random();
-        int max = 10 * currentlevel;
+        //Modified The Range Tick Per Level To +2 Per Level Instead of + 10
+        double maxd = (((currentlevel * 0.2) * 10) + 10);
+        int max = (int) maxd;
+        info.setText("Guess A Number Between 1 - " + String.valueOf(max) + "!");
         int min = 1;
         int rannum = newran.nextInt(max - min) + 1;
         return rannum;
@@ -38,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void ButtonGuess(View view)
     {
+
         TextView level = (TextView) findViewById(R.id.textView3);
         TextView tv1 = (TextView) findViewById(R.id.textView);
         TextView pntVal = (TextView) findViewById(R.id.points);
