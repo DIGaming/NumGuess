@@ -5,4 +5,6 @@
     <string name="desc">Guess a number between 1 &#8211; 10!</string>
     <string name="points">0</string>
     <string name="point_label">Points:</string>
+    <string name="level_label">Level:</string>
+    <string name="cur_level">1</string>
 </resources>
