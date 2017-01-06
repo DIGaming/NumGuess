@@ -13,7 +13,7 @@
 
     <TextView
         android:text=""
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sample_text"
@@ -34,7 +34,7 @@
     <TextView
         android:textColor="@color/Gray"
         android:text="@string/desc"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
@@ -45,7 +45,7 @@
     <TextView
         android:textColor="@color/Gray"
         android:text="@string/point_label"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pointlabel"
@@ -56,7 +56,7 @@
     <TextView
         android:textColor="@color/Gray"
         android:text="@string/points"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/points"
@@ -68,7 +68,7 @@
     <TextView
         android:textColor="@color/Gray"
         android:text="@string/level_label"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/levellabel"
@@ -78,7 +78,7 @@
     <TextView
         android:textColor="@color/Gray"
         android:text="@string/cur_level"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
