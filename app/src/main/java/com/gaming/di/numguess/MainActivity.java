@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else {
                 tv1.setText("Your Value Of " + guess.getText().toString() + " Is Correct");
-                tv1.setTextColor(Color.GREEN);
+                tv1.setTextColor(Color.rgb(0,128,0));
                 int num = Integer.valueOf(pntVal.getText().toString());
                 int num2 = num + 100;
                 pntVal.setText(String.valueOf(num2));
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         else
         {
             tv1.setText("Your Guess Is Incorrect The Value Is " + cache.toString());
-            tv1.setTextColor(Color.RED);
+            tv1.setTextColor(Color.rgb(128,0,0));
         }
     }
 
