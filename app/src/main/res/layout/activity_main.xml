@@ -51,19 +51,8 @@
         android:id="@+id/pointlabel"
         android:layout_marginTop="33dp"
         android:layout_below="@+id/levellabel"
-        android:layout_alignStart="@+id/levellabel" />
-
-    <TextView
-        android:textColor="@color/Gray"
-        android:text="@string/points"
-        android:textSize="18sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/points"
-        android:layout_alignBaseline="@+id/pointlabel"
-        android:layout_alignBottom="@+id/pointlabel"
-        android:layout_toEndOf="@+id/pointlabel"
-        android:layout_marginStart="40dp" />
+        android:layout_alignStart="@+id/levellabel"
+        android:layout_alignEnd="@+id/textView" />
 
     <TextView
         android:textColor="@color/Gray"
@@ -73,7 +62,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/levellabel"
         android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/sample_text" />
+         />
 
     <TextView
         android:textColor="@color/Gray"
@@ -115,5 +104,16 @@
         android:id="@+id/button2"
         android:enabled="false"
         android:onClick="AutoGuess"/>
+
+    <TextView
+        android:textColor="@color/Gray"
+        android:text="@string/points"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/points"
+        android:layout_alignBaseline="@+id/pointlabel"
+        android:layout_alignBottom="@+id/pointlabel"
+        android:layout_alignEnd="@+id/pointlabel" />
 
 </RelativeLayout>
