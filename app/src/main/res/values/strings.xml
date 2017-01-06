@@ -7,4 +7,5 @@
     <string name="point_label">Points:</string>
     <string name="level_label">Level:</string>
     <string name="cur_level">1</string>
+    <string name="button_auto_text">Auto Guess!</string>
 </resources>

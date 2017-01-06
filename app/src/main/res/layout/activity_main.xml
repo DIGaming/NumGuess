@@ -11,15 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.gaming.di.numguess.MainActivity">
 
-    <Button
-        android:text="@string/button_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="ButtonGuess"/>
-
     <TextView
         android:text=""
         android:textSize="24sp"
@@ -40,18 +31,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/editText2"
-        android:labelFor="@+id/editText2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:textAlignment="viewEnd"
-        android:layout_toStartOf="@+id/button" />
-
     <TextView
         android:textColor="@color/Gray"
         android:text="@string/desc"
@@ -65,35 +44,14 @@
 
     <TextView
         android:textColor="@color/Gray"
-        android:text="@string/cur_level"
-        android:textSize="24sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/levellabel"
-        android:layout_alignStart="@id/points"
-        android:id="@+id/textView3" />
-
-    <TextView
-        android:textColor="@color/Gray"
-        android:text="@string/level_label"
-        android:textSize="24sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/levellabel"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="150dp"
-        android:layout_alignEnd="@+id/pointlabel" />
-
-    <TextView
-        android:textColor="@color/Gray"
         android:text="@string/point_label"
         android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pointlabel"
+        android:layout_marginTop="33dp"
         android:layout_below="@+id/levellabel"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_marginTop="23dp" />
+        android:layout_alignStart="@+id/levellabel" />
 
     <TextView
         android:textColor="@color/Gray"
@@ -104,6 +62,58 @@
         android:id="@+id/points"
         android:layout_alignBaseline="@+id/pointlabel"
         android:layout_alignBottom="@+id/pointlabel"
-        android:layout_toStartOf="@+id/textView" />
+        android:layout_toEndOf="@+id/pointlabel"
+        android:layout_marginStart="40dp" />
+
+    <TextView
+        android:textColor="@color/Gray"
+        android:text="@string/level_label"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/levellabel"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/sample_text" />
+
+    <TextView
+        android:textColor="@color/Gray"
+        android:text="@string/cur_level"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_above="@+id/pointlabel"
+        android:layout_alignStart="@+id/points" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:background="@color/White"
+        android:layout_alignBaseline="@+id/button"
+        android:layout_alignBottom="@+id/button"
+        android:layout_toStartOf="@+id/button" />
+
+    <Button
+        android:text="@string/button_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:onClick="ButtonGuess"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_marginBottom="23dp" />
+
+    <Button
+        android:text="@string/button_auto_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_alignEnd="@+id/button"
+        android:id="@+id/button2"
+        android:enabled="false"
+        android:onClick="AutoGuess"/>
 
 </RelativeLayout>

@@ -2,9 +2,11 @@ package com.gaming.di.numguess;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,9 +19,9 @@ import static android.R.id.text1;
 public class MainActivity extends AppCompatActivity {
 
     // Used to load the 'native-lib' library on application startup.
-    static {
-        System.loadLibrary("native-lib");
-    }
+   // static {
+    //    System.loadLibrary("native-lib");
+   // }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void ButtonGuess(View view)
     {
-
         TextView level = (TextView) findViewById(R.id.textView3);
         TextView tv1 = (TextView) findViewById(R.id.textView);
         TextView pntVal = (TextView) findViewById(R.id.points);
@@ -54,15 +55,17 @@ public class MainActivity extends AppCompatActivity {
 
         if (String.valueOf(guess.getText()).equals(cache))
         {
-            if(currentexp == ExpValue)
+            if(currentexp > ExpValue)
             {
                 currentlevel += 1;
+                Button AutoBtn = (Button) findViewById(R.id.button2);
+                AutoBtn.setEnabled(true);
                 level.setText(String.valueOf(currentlevel));
                 pntVal.setText("0");
             }
             else {
                 tv1.setText("Your Value Of " + guess.getText().toString() + " Is Correct");
-                tv1.setTextColor(Color.rgb(0,128,0));
+                tv1.setTextColor(Color.rgb(0,200,0));
                 int num = Integer.valueOf(pntVal.getText().toString());
                 int num2 = num + 100;
                 pntVal.setText(String.valueOf(num2));
@@ -71,13 +74,66 @@ public class MainActivity extends AppCompatActivity {
         else
         {
             tv1.setText("Your Guess Is Incorrect The Value Is " + cache.toString());
-            tv1.setTextColor(Color.rgb(128,0,0));
+            tv1.setTextColor(Color.rgb(250,0,0));
         }
     }
+
+    public void AutoGuess(View view)
+    {
+        boolean timerStarts = false;
+        if(!timerStarts)
+        {
+            Button AutoBtn = (Button) findViewById(R.id.button2);
+            AutoBtn.setEnabled(false);
+            timer.start();
+            timerStarts = true;
+        }
+    }
+
+    //Timer Is Used For Auto Guess Function Which Is Available After Every Manual Level Up
+    // First Integer Is How Long 25 Seconds, Second Integer Determines Tick Rate aka 10 a seconde
+    CountDownTimer timer = new CountDownTimer(25000, 100)
+    {
+        public void onTick (long millisUntilFinished)
+        {
+            Button AutoBtn = (Button) findViewById(R.id.button2);
+            TextView level = (TextView) findViewById(R.id.textView3);
+            TextView tv1 = (TextView) findViewById(R.id.textView);
+            TextView pntVal = (TextView) findViewById(R.id.points);
+            EditText guess = (EditText) findViewById(R.id.editText2);
+            int currentexp = Integer.valueOf(pntVal.getText().toString());
+            int currentlevel = Integer.valueOf(level.getText().toString());
+            int ExpValue = ((currentlevel * 500) * 2);
+            String cache = String.valueOf(RandomNum(currentlevel));
+
+            if (String.valueOf(guess.getText()).equals(cache)) {
+                if (currentexp > ExpValue) {
+                    currentlevel += 1;
+                    AutoBtn.setEnabled(true);
+                    level.setText(String.valueOf(currentlevel));
+                    pntVal.setText("0");
+                } else {
+                    tv1.setText("Your Value Of " + guess.getText().toString() + " Is Correct");
+                    tv1.setTextColor(Color.rgb(0, 200, 0));
+                    int num = Integer.valueOf(pntVal.getText().toString());
+                    int num2 = num + 100;
+                    pntVal.setText(String.valueOf(num2));
+                }
+            } else {
+                tv1.setText("Your Guess Is Incorrect The Value Is " + cache.toString());
+                tv1.setTextColor(Color.rgb(250, 0, 0));
+            }
+        }
+
+        public void onFinish()
+        {
+
+        }
+    };
 
     /**
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    public native String stringFromJNI();
+    //public native String stringFromJNI();
 }
