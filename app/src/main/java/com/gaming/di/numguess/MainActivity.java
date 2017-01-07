@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    //Random Number Generator
     public int RandomNum(int currentlevel)
     {
         TextView info = (TextView)findViewById(R.id.textView2);
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         int rannum = newran.nextInt(max - min) + 1;
         return rannum;
     }
-
+    // Single Guess Button Action
     public void ButtonGuess(View view)
     {
         TextView level = (TextView) findViewById(R.id.textView3);
@@ -75,15 +76,23 @@ public class MainActivity extends AppCompatActivity {
         {
             tv1.setText("Your Guess Is Incorrect The Value Is " + cache.toString());
             tv1.setTextColor(Color.rgb(250,0,0));
+            int num = Integer.valueOf(pntVal.getText().toString());
+            if (num != 0)
+            {
+                int num2 = num - 1;
+                pntVal.setText(String.valueOf(num2));
+            }
+
         }
     }
-
+    // Quick Guess Button Action (aka Auto Guess 10 Guesses Per Second For 20 Seconds)
     public void AutoGuess(View view)
     {
         boolean timerStarts = false;
         if(!timerStarts)
         {
             Button AutoBtn = (Button) findViewById(R.id.button2);
+            //Comment Below Line Out For Quicker Testing / Fast Mode.
             AutoBtn.setEnabled(false);
             timer.start();
             timerStarts = true;
@@ -91,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Timer Is Used For Auto Guess Function Which Is Available After Every Manual Level Up
-    // First Integer Is How Long 25 Seconds, Second Integer Determines Tick Rate aka 10 a seconde
-    CountDownTimer timer = new CountDownTimer(25000, 100)
+    // First Integer Is How Long 20 Seconds, Second Integer Determines Tick Rate aka 10 a second
+    CountDownTimer timer = new CountDownTimer(20000, 100)
     {
         public void onTick (long millisUntilFinished)
         {
@@ -122,6 +131,12 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 tv1.setText("Your Guess Is Incorrect The Value Is " + cache.toString());
                 tv1.setTextColor(Color.rgb(250, 0, 0));
+                int num = Integer.valueOf(pntVal.getText().toString());
+                if (num != 0)
+                {
+                    int num2 = num - 1;
+                    pntVal.setText(String.valueOf(num2));
+                }
             }
         }
 
@@ -130,10 +145,4 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
-
-    /**
-     * A native method that is implemented by the 'native-lib' native library,
-     * which is packaged with this application.
-     */
-    //public native String stringFromJNI();
 }
