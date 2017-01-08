@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+//import com.google.android.gms.games.Games;
+
 import org.w3c.dom.Text;
 
 import java.util.Random;
@@ -22,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mcountDown = new CountDownTimer(300000, 1000) {
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void timeup(Context context)
     {
+        TextView points = (TextView) findViewById(R.id.ttlpoints);
         AlertDialog.Builder builder = new AlertDialog.Builder(
                 MainActivity.this);
         builder.setTitle("Times up!")
@@ -90,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
         {
             if(currentexp > ExpValue)
             {
-                ttlpoints += currentexp;
-                ttl.setText(String.valueOf(ttlpoints));
                 currentlevel += 1;
                 Button AutoBtn = (Button) findViewById(R.id.button2);
                 AutoBtn.setEnabled(true);
@@ -99,11 +99,14 @@ public class MainActivity extends AppCompatActivity {
                 pntVal.setText("0");
             }
             else {
+                ttl.setText(String.valueOf(ttlpoints));
                 tv1.setText("Your Value Of " + guess.getText().toString() + " Is Correct");
                 tv1.setTextColor(Color.rgb(0,200,0));
                 int num = Integer.valueOf(pntVal.getText().toString());
                 int num2 = num + 100;
+                ttlpoints += 100;
                 pntVal.setText(String.valueOf(num2));
+                ttl.setText(String.valueOf(ttlpoints));
             }
         }
         else
@@ -113,8 +116,10 @@ public class MainActivity extends AppCompatActivity {
             int num = Integer.valueOf(pntVal.getText().toString());
             if (num != 0)
             {
+                ttlpoints -= 1;
                 int num2 = num - 1;
                 pntVal.setText(String.valueOf(num2));
+                ttl.setText(String.valueOf(ttlpoints));
             }
 
         }
@@ -139,6 +144,8 @@ public class MainActivity extends AppCompatActivity {
     {
         public void onTick (long millisUntilFinished)
         {
+            TextView ttl = (TextView) findViewById(R.id.ttlpoints);
+            int ttlpoints = Integer.valueOf(ttl.getText().toString());
             Button AutoBtn = (Button) findViewById(R.id.button2);
             TextView level = (TextView) findViewById(R.id.textView3);
             TextView tv1 = (TextView) findViewById(R.id.textView);
@@ -160,7 +167,9 @@ public class MainActivity extends AppCompatActivity {
                     tv1.setTextColor(Color.rgb(0, 200, 0));
                     int num = Integer.valueOf(pntVal.getText().toString());
                     int num2 = num + 100;
+                    ttlpoints += 100;
                     pntVal.setText(String.valueOf(num2));
+                    ttl.setText(String.valueOf(ttlpoints));
                 }
             } else {
                 tv1.setText("Your Guess Is Incorrect The Value Is " + cache.toString());
@@ -169,7 +178,9 @@ public class MainActivity extends AppCompatActivity {
                 if (num != 0)
                 {
                     int num2 = num - 1;
+                    ttlpoints -= 1;
                     pntVal.setText(String.valueOf(num2));
+                    ttl.setText(String.valueOf(ttlpoints));
                 }
             }
         }
