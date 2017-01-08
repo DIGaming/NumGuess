@@ -3,6 +3,9 @@ package com.gaming.di.numguess;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.media.MediaPlayer;
 
 //import com.google.android.gms.games.Games;
 
@@ -22,6 +26,12 @@ import static android.R.id.text1;
 
 public class MainActivity extends AppCompatActivity {
     private Context context;
+    MediaPlayer background_music;
+    private CountDownTimer mcountDown;
+    SoundPool mysound;
+    int addpoint_sfx;
+    int minusepoint_sfx;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +49,25 @@ public class MainActivity extends AppCompatActivity {
             }
         }.start();
 
+        //Background Music Specs and Looping Before Starting.
+        background_music = MediaPlayer.create(MainActivity.this, R.raw.backgroundmusic);
+        background_music.setLooping(true);
+        background_music.start();
+
+        //Create Sound Pool Manager For Sound Effects
+        mysound = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        addpoint_sfx = mysound.load(this, R.raw.addpoint, 1);
+        minusepoint_sfx = mysound.load(this, R.raw.minuspoint, 1);
     }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        background_music.release();
+        finish();
+    }
+
     public void timeup(Context context)
     {
         TextView points = (TextView) findViewById(R.id.ttlpoints);
@@ -57,9 +85,6 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
-
-    private CountDownTimer mcountDown;
-
 
     //Random Number Generator
     public int RandomNum(int currentlevel)
@@ -105,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 int num = Integer.valueOf(pntVal.getText().toString());
                 int num2 = num + 100;
                 ttlpoints += 100;
+                AddSFX();
                 pntVal.setText(String.valueOf(num2));
                 ttl.setText(String.valueOf(ttlpoints));
             }
@@ -118,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 ttlpoints -= 1;
                 int num2 = num - 1;
+                MinusSFX();
                 pntVal.setText(String.valueOf(num2));
                 ttl.setText(String.valueOf(ttlpoints));
             }
@@ -166,8 +193,11 @@ public class MainActivity extends AppCompatActivity {
                     tv1.setText("Your Value Of " + guess.getText().toString() + " Is Correct");
                     tv1.setTextColor(Color.rgb(0, 200, 0));
                     int num = Integer.valueOf(pntVal.getText().toString());
+                    AddSFX();
                     int num2 = num + 100;
                     ttlpoints += 100;
+                    pntVal.setTextColor(Color.GREEN);
+                    pntVal.setTextSize(18);
                     pntVal.setText(String.valueOf(num2));
                     ttl.setText(String.valueOf(ttlpoints));
                 }
@@ -177,8 +207,11 @@ public class MainActivity extends AppCompatActivity {
                 int num = Integer.valueOf(pntVal.getText().toString());
                 if (num != 0)
                 {
+                    MinusSFX();
                     int num2 = num - 1;
                     ttlpoints -= 1;
+                    pntVal.setTextColor(Color.RED);
+                    pntVal.setTextSize(14);
                     pntVal.setText(String.valueOf(num2));
                     ttl.setText(String.valueOf(ttlpoints));
                 }
@@ -187,10 +220,21 @@ public class MainActivity extends AppCompatActivity {
 
         public void onFinish()
         {
-
+            TextView pntVal = (TextView) findViewById(R.id.points);
+            pntVal.setTextColor(Color.LTGRAY);
+            pntVal.setTextSize(16);
         }
     };
 
-    // Game Timer Set To 5 Minuets
+    //Build SoundPool For SoundEffects Excluding Background Music Which Is Handled Above With Media Player In The OnCreate Function
 
+    public void AddSFX()
+    {
+        mysound.play(addpoint_sfx, 1, 1, 1, 0, 1);
+    }
+
+    public void MinusSFX()
+    {
+        mysound.play(minusepoint_sfx, 1, 1, 1, 0, 1);
+    }
 }
