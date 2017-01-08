@@ -1,8 +1,10 @@
 package com.gaming.di.numguess;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,17 +19,45 @@ import java.util.Random;
 import static android.R.id.text1;
 
 public class MainActivity extends AppCompatActivity {
-
-    // Used to load the 'native-lib' library on application startup.
-   // static {
-    //    System.loadLibrary("native-lib");
-   // }
-
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mcountDown = new CountDownTimer(300000, 1000) {
+           TextView gametime = (TextView)findViewById(R.id.gametime);
+            @Override
+            public void onFinish() {
+                timeup(context);
+            }
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                gametime.setText("Time Left: " + String.valueOf(millisUntilFinished / 1000 ));
+            }
+        }.start();
+
     }
+    public void timeup(Context context)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(
+                MainActivity.this);
+        builder.setTitle("Times up!")
+                .setMessage("Game over. Play Again?")
+                .setCancelable(false)
+                .setNeutralButton(android.R.string.ok,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                MainActivity.this.recreate();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private CountDownTimer mcountDown;
+
 
     //Random Number Generator
     public int RandomNum(int currentlevel)
@@ -49,15 +79,19 @@ public class MainActivity extends AppCompatActivity {
         TextView tv1 = (TextView) findViewById(R.id.textView);
         TextView pntVal = (TextView) findViewById(R.id.points);
         EditText guess = (EditText) findViewById(R.id.editText2);
+        TextView ttl = (TextView) findViewById(R.id.ttlpoints);
         int currentexp = Integer.valueOf(pntVal.getText().toString());
         int currentlevel = Integer.valueOf(level.getText().toString());
         int ExpValue = ((currentlevel * 500) * 2);
+        int ttlpoints = Integer.valueOf(ttl.getText().toString());
         String cache = String.valueOf(RandomNum(currentlevel));
 
         if (String.valueOf(guess.getText()).equals(cache))
         {
             if(currentexp > ExpValue)
             {
+                ttlpoints += currentexp;
+                ttl.setText(String.valueOf(ttlpoints));
                 currentlevel += 1;
                 Button AutoBtn = (Button) findViewById(R.id.button2);
                 AutoBtn.setEnabled(true);
@@ -145,4 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+
+    // Game Timer Set To 5 Minuets
+
 }
