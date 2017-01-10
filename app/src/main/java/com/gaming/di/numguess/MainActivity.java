@@ -2,8 +2,9 @@ package com.gaming.di.numguess;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.AssetManager;
 import android.graphics.Color;
-import android.media.AudioAttributes;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.CountDownTimer;
@@ -15,9 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.media.MediaPlayer;
-
 //import com.google.android.gms.games.Games;
-
 import org.w3c.dom.Text;
 
 import java.util.Random;
@@ -36,8 +35,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final Typeface newfont = Typeface.createFromAsset(getAssets(), "fonts/LCD-NormalFont.TTF");
         mcountDown = new CountDownTimer(300000, 1000) {
            TextView gametime = (TextView)findViewById(R.id.gametime);
+
             @Override
             public void onFinish() {
                 timeup(context);
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 gametime.setText("Time Left: " + String.valueOf(millisUntilFinished / 1000 ));
+                gametime.setTypeface(newfont);
             }
         }.start();
 
@@ -58,6 +60,22 @@ public class MainActivity extends AppCompatActivity {
         mysound = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         addpoint_sfx = mysound.load(this, R.raw.addpoint, 1);
         minusepoint_sfx = mysound.load(this, R.raw.minuspoint, 1);
+
+        Button AutoBtn = (Button) findViewById(R.id.button2);
+        AutoBtn.setEnabled(true);
+
+        TextView Point_Label = (TextView)findViewById(R.id.pointlabel);
+        TextView Points = (TextView)findViewById(R.id.points);
+        TextView TTLPoints_Label = (TextView)findViewById(R.id.ttl_points_lbl);
+        TextView TTLPoints = (TextView)findViewById(R.id.ttlpoints);
+        TextView Cur_Lev_Label = (TextView)findViewById(R.id.levellabel);
+        TextView Cur_Level = (TextView)findViewById(R.id.textView3);
+        Point_Label.setTypeface(newfont);
+        Points.setTypeface(newfont);
+        TTLPoints_Label.setTypeface(newfont);
+        TTLPoints.setTypeface(newfont);
+        Cur_Lev_Label.setTypeface(newfont);
+        Cur_Level.setTypeface(newfont);
     }
 
     @Override
@@ -202,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
                     ttl.setText(String.valueOf(ttlpoints));
                 }
             } else {
-                tv1.setText("Your Guess Is Incorrect The Value Is " + cache.toString());
+                tv1.setText("Your Guess Is Incorrect The Value Is " + cache);
                 tv1.setTextColor(Color.rgb(250, 0, 0));
                 int num = Integer.valueOf(pntVal.getText().toString());
                 if (num != 0)
@@ -225,6 +243,8 @@ public class MainActivity extends AppCompatActivity {
             pntVal.setTextSize(16);
         }
     };
+
+
 
     //Build SoundPool For SoundEffects Excluding Background Music Which Is Handled Above With Media Player In The OnCreate Function
 
