@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
+import android.media.Image;
 import android.media.SoundPool;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
@@ -11,9 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.media.MediaPlayer;
+import android.widget.ImageButton;
+
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,14 +25,15 @@ public class MainActivity extends AppCompatActivity {
     SoundPool mysound;
     int addpoint_sfx;
     int minusepoint_sfx;
+    boolean isPressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final Typeface newfont = Typeface.createFromAsset(getAssets(), "fonts/LCD-NormalFont.TTF");
-        mcountDown = new CountDownTimer(300000, 1000) {
-           TextView gametime = (TextView)findViewById(R.id.gametime);
+        mcountDown = new CountDownTimer(150000, 1000) {
+            TextView gametime = (TextView) findViewById(R.id.gametime);
 
             @Override
             public void onFinish() {
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                gametime.setText("Time Left: " + String.valueOf(millisUntilFinished / 1000 ));
+                gametime.setText("Time Left: " + String.valueOf(millisUntilFinished / 1000));
                 gametime.setTypeface(newfont);
             }
         }.start();
@@ -54,15 +57,16 @@ public class MainActivity extends AppCompatActivity {
         addpoint_sfx = mysound.load(this, R.raw.addpoint, 1);
         minusepoint_sfx = mysound.load(this, R.raw.minuspoint, 1);
 
-        ImageButton AutoBtn = (ImageButton) findViewById(R.id.imageButton2);
+        ImageButton AutoBtn = (ImageButton) findViewById(R.id.RedButton);
+        AutoBtn.setBackgroundResource(R.drawable.btnredhigh);
         AutoBtn.setEnabled(true);
 
-        TextView Point_Label = (TextView)findViewById(R.id.pointlabel);
-        TextView Points = (TextView)findViewById(R.id.points);
-        TextView TTLPoints_Label = (TextView)findViewById(R.id.ttl_points_lbl);
-        TextView TTLPoints = (TextView)findViewById(R.id.ttlpoints);
-        TextView Cur_Lev_Label = (TextView)findViewById(R.id.levellabel);
-        TextView Cur_Level = (TextView)findViewById(R.id.textView3);
+        TextView Point_Label = (TextView) findViewById(R.id.pointlabel);
+        TextView Points = (TextView) findViewById(R.id.points);
+        TextView TTLPoints_Label = (TextView) findViewById(R.id.ttl_points_lbl);
+        TextView TTLPoints = (TextView) findViewById(R.id.ttlpoints);
+        TextView Cur_Lev_Label = (TextView) findViewById(R.id.levellabel);
+        TextView Cur_Level = (TextView) findViewById(R.id.textView3);
         Point_Label.setTypeface(newfont);
         Points.setTypeface(newfont);
         TTLPoints_Label.setTypeface(newfont);
@@ -112,10 +116,11 @@ public class MainActivity extends AppCompatActivity {
     // Single Guess Button Action
     public void ButtonGuess(View view)
     {
+        ImageButton BlueButton = (ImageButton)findViewById(R.id.BlueButton);
         TextView level = (TextView) findViewById(R.id.textView3);
         TextView tv1 = (TextView) findViewById(R.id.textView);
         TextView pntVal = (TextView) findViewById(R.id.points);
-        EditText guess = (EditText) findViewById(R.id.editText2);
+        EditText guess = (EditText) findViewById(R.id.editText);
         TextView ttl = (TextView) findViewById(R.id.ttlpoints);
         int currentexp = Integer.valueOf(pntVal.getText().toString());
         int currentlevel = Integer.valueOf(level.getText().toString());
@@ -123,12 +128,13 @@ public class MainActivity extends AppCompatActivity {
         int ttlpoints = Integer.valueOf(ttl.getText().toString());
         String cache = String.valueOf(RandomNum(currentlevel));
 
+
         if (String.valueOf(guess.getText()).equals(cache))
         {
             if(currentexp > ExpValue)
             {
                 currentlevel += 1;
-                ImageButton AutoBtn = (ImageButton) findViewById(R.id.imageButton2);
+                ImageButton AutoBtn = (ImageButton) findViewById(R.id.RedButton);
                 AutoBtn.setEnabled(true);
                 level.setText(String.valueOf(currentlevel));
                 pntVal.setText("0");
@@ -167,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         boolean timerStarts = false;
         if(!timerStarts)
         {
-            ImageButton AutoBtn = (ImageButton) findViewById(R.id.imageButton2);
+            ImageButton AutoBtn = (ImageButton) findViewById(R.id.RedButton);
             //Comment Below Line Out For Quicker Testing / Fast Mode.
             AutoBtn.setEnabled(false);
             timer.start();
@@ -182,11 +188,11 @@ public class MainActivity extends AppCompatActivity {
         {
             TextView ttl = (TextView) findViewById(R.id.ttlpoints);
             int ttlpoints = Integer.valueOf(ttl.getText().toString());
-            ImageButton AutoBtn = (ImageButton) findViewById(R.id.imageButton2);
+            ImageButton AutoBtn = (ImageButton) findViewById(R.id.RedButton);
             TextView level = (TextView) findViewById(R.id.textView3);
             TextView tv1 = (TextView) findViewById(R.id.textView);
             TextView pntVal = (TextView) findViewById(R.id.points);
-            EditText guess = (EditText) findViewById(R.id.editText2);
+            EditText guess = (EditText) findViewById(R.id.editText);
             int currentexp = Integer.valueOf(pntVal.getText().toString());
             int currentlevel = Integer.valueOf(level.getText().toString());
             int ExpValue = ((currentlevel * 500) * 2);

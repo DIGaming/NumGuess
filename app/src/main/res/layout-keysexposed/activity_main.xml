@@ -138,24 +138,12 @@
         android:layout_centerHorizontal="true" />
 
 
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/White"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:layout_above="@+id/toggleButtonBlue"
-        android:layout_toEndOf="@+id/ttl_points_lbl"
-        android:layout_alignStart="@+id/ttlpoints" />
-
     <ImageButton
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:scaleType="fitCenter"
         android:background="@null"
-        app:srcCompat="@drawable/btnbluehigh"
+        android:src="@drawable/blueselector"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/textView2"
         android:layout_marginBottom="66dp"
@@ -167,11 +155,23 @@
         android:layout_height="60dp"
         android:scaleType="fitCenter"
         android:background="@null"
-        app:srcCompat="@drawable/btnredhigh"
+        android:src="@drawable/redselector"
         android:layout_alignBottom="@+id/BlueButton"
         android:layout_alignEnd="@+id/textView2"
         android:id="@+id/RedButton"
-        android:onClick="AutoGuess"/>
+        android:onClick="AutoGuess"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/White"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_marginBottom="14dp"
+        android:layout_above="@+id/RedButton"
+        android:layout_alignStart="@+id/ttlpoints" />
     <![CDATA[
 
     " />
