@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:background="@mipmap/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.gaming.di.numguess.MainActivity">
+
+    <TextView
+        android:textColorHighlight="@color/Gray"
+        android:id="@+id/sample_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/header"
+        android:textStyle="bold"
+        android:textColor="@color/Gray"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:textColor="@color/Gray"
+        android:text="@string/desc"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10pt"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/sample_text"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text=""
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Total Points:"
+        android:textColor="@color/Gray"
+        android:padding="4dp"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ttl_points_lbl"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:textColor="@color/Gray"
+        android:text="@string/point_label"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pointlabel"
+        android:padding="4dp"
+        android:shadowColor="@color/White"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="0.6"
+        android:layout_above="@+id/ttl_points_lbl"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:textColor="@color/Gray"
+        android:text="Level:"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/levellabel"
+        android:padding="4dp"
+        android:shadowColor="@color/White"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="0.6"
+        android:layout_above="@+id/pointlabel"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Time Left:"
+        android:textSize="18sp"
+        android:padding="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Gray"
+        android:id="@+id/gametime"
+        android:layout_below="@+id/ttl_points_lbl"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ttlpoints"
+        android:textColor="@color/Gray"
+        android:padding="4dp"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/ttl_points_lbl"
+        android:layout_alignBottom="@+id/ttl_points_lbl"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:textColor="@color/Gray"
+        android:text="@string/cur_level"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:padding="4dp"
+        android:shadowColor="@color/White"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="0.6"
+        android:layout_above="@+id/pointlabel"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:textColor="@color/Gray"
+        android:text="@string/points"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/points"
+        android:padding="4dp"
+        android:shadowColor="@color/White"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="0.6"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
+
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/White"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_above="@+id/toggleButtonBlue"
+        android:layout_toEndOf="@+id/ttl_points_lbl"
+        android:layout_alignStart="@+id/ttlpoints" />
+
+    <ImageButton
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        app:srcCompat="@drawable/btnbluehigh"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginBottom="66dp"
+        android:id="@+id/BlueButton"
+        android:onClick="ButtonGuess"/>
+
+    <ImageButton
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        app:srcCompat="@drawable/btnredhigh"
+        android:layout_alignBottom="@+id/BlueButton"
+        android:layout_alignEnd="@+id/textView2"
+        android:id="@+id/RedButton"
+        android:onClick="AutoGuess"/>
+    <![CDATA[
+
+    " />
+
+]]>
+</RelativeLayout>
