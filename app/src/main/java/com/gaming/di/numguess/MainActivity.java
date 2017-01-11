@@ -1,8 +1,6 @@
 package com.gaming.di.numguess;
-
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
@@ -12,16 +10,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.media.MediaPlayer;
-//import com.google.android.gms.games.Games;
-import org.w3c.dom.Text;
-
 import java.util.Random;
-
-import static android.R.id.text1;
 
 public class MainActivity extends AppCompatActivity {
     private Context context;
@@ -61,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         addpoint_sfx = mysound.load(this, R.raw.addpoint, 1);
         minusepoint_sfx = mysound.load(this, R.raw.minuspoint, 1);
 
-        Button AutoBtn = (Button) findViewById(R.id.button2);
+        ImageButton AutoBtn = (ImageButton) findViewById(R.id.imageButton2);
         AutoBtn.setEnabled(true);
 
         TextView Point_Label = (TextView)findViewById(R.id.pointlabel);
@@ -103,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
-
     //Random Number Generator
     public int RandomNum(int currentlevel)
     {
@@ -136,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             if(currentexp > ExpValue)
             {
                 currentlevel += 1;
-                Button AutoBtn = (Button) findViewById(R.id.button2);
+                ImageButton AutoBtn = (ImageButton) findViewById(R.id.imageButton2);
                 AutoBtn.setEnabled(true);
                 level.setText(String.valueOf(currentlevel));
                 pntVal.setText("0");
@@ -175,14 +167,13 @@ public class MainActivity extends AppCompatActivity {
         boolean timerStarts = false;
         if(!timerStarts)
         {
-            Button AutoBtn = (Button) findViewById(R.id.button2);
+            ImageButton AutoBtn = (ImageButton) findViewById(R.id.imageButton2);
             //Comment Below Line Out For Quicker Testing / Fast Mode.
             AutoBtn.setEnabled(false);
             timer.start();
             timerStarts = true;
         }
     }
-
     //Timer Is Used For Auto Guess Function Which Is Available After Every Manual Level Up
     // First Integer Is How Long 20 Seconds, Second Integer Determines Tick Rate aka 10 a second
     CountDownTimer timer = new CountDownTimer(20000, 100)
@@ -191,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         {
             TextView ttl = (TextView) findViewById(R.id.ttlpoints);
             int ttlpoints = Integer.valueOf(ttl.getText().toString());
-            Button AutoBtn = (Button) findViewById(R.id.button2);
+            ImageButton AutoBtn = (ImageButton) findViewById(R.id.imageButton2);
             TextView level = (TextView) findViewById(R.id.textView3);
             TextView tv1 = (TextView) findViewById(R.id.textView);
             TextView pntVal = (TextView) findViewById(R.id.points);
@@ -243,9 +234,6 @@ public class MainActivity extends AppCompatActivity {
             pntVal.setTextSize(16);
         }
     };
-
-
-
     //Build SoundPool For SoundEffects Excluding Background Music Which Is Handled Above With Media Player In The OnCreate Function
 
     public void AddSFX()
