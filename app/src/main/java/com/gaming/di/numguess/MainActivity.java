@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
-import android.media.Image;
 import android.media.SoundPool;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
@@ -24,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private CountDownTimer mcountDown;
     SoundPool mysound;
     int addpoint_sfx;
-    int minusepoint_sfx;
+    int minuspoint_sfx;
     boolean isPressed;
 
     @Override
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         //Create Sound Pool Manager For Sound Effects
         mysound = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         addpoint_sfx = mysound.load(this, R.raw.addpoint, 1);
-        minusepoint_sfx = mysound.load(this, R.raw.minuspoint, 1);
+        minuspoint_sfx = mysound.load(this, R.raw.minuspoint, 1);
 
         ImageButton AutoBtn = (ImageButton) findViewById(R.id.RedButton);
         AutoBtn.setBackgroundResource(R.drawable.btnredhigh);
@@ -249,6 +248,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void MinusSFX()
     {
-        mysound.play(minusepoint_sfx, 1, 1, 1, 0, 1);
+        mysound.play(minuspoint_sfx, 1, 1, 1, 0, 1);
     }
 }
