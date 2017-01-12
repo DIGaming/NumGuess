@@ -1,6 +1,7 @@
 package com.gaming.di.numguess;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
@@ -36,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+
+                background_music.stop();
+                mysound.stop(addpoint_sfx);
+                mysound.stop(minuspoint_sfx);
+                timer.cancel();
                 timeup(context);
             }
 
@@ -89,13 +95,16 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this);
         builder.setTitle("Times up!")
                 .setMessage("Game over. Play Again?")
-                .setCancelable(false)
-                .setNeutralButton(android.R.string.ok,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                MainActivity.this.recreate();
-                            }
-                        });
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No", null)
+                .setCancelable(false);
+
         AlertDialog alert = builder.create();
         alert.show();
     }
