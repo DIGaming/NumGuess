@@ -17,5 +17,9 @@
     <string name="copyright">© 2017 All rights reserved by DIGaming Co.</string>
     <string name="ttlpointsint">0</string>
     <string name="emptyguess">Please type in a number to guess</string>
+    <string name="GameTime">0</string>
+    <string name="RedContentDesc">Red Auto Guess Button Content Description</string>
+    <string name="BlueContentDesc">Blue Guess Button Content Description</string>
+    <string name="HorizontalImage">Placeholder for content alignment DO NOT MOVE FROM CENTER</string>
 
 </resources>
