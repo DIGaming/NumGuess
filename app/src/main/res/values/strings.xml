@@ -16,5 +16,6 @@
     <string name="autoguesslabel">Auto Guess!</string>
     <string name="copyright">© 2017 All rights reserved by DIGaming Co.</string>
     <string name="ttlpointsint">0</string>
+    <string name="emptyguess">Please type in a number to guess</string>
 
 </resources>

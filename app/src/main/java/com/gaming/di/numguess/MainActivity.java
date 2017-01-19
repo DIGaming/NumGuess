@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final Typeface newfont = Typeface.createFromAsset(getAssets(), "fonts/LCD-NormalFont.TTF");
         mcountDown = new CountDownTimer(150000, 1000) {
-            TextView gametime = (TextView) findViewById(R.id.gametime);
+            TextView gametime = (TextView) findViewById(R.id.GameTimeInt);
 
             @Override
             public void onFinish() {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                gametime.setText("Time Left: " + String.valueOf(millisUntilFinished / 1000));
+                gametime.setText(String.valueOf(millisUntilFinished / 1000));
                 gametime.setTypeface(newfont);
             }
         }.start();
@@ -63,15 +63,14 @@ public class MainActivity extends AppCompatActivity {
         minuspoint_sfx = mysound.load(this, R.raw.minuspoint, 1);
 
         ImageButton AutoBtn = (ImageButton) findViewById(R.id.RedButton);
-        AutoBtn.setBackgroundResource(R.drawable.btnredhigh);
         AutoBtn.setEnabled(true);
 
-        TextView Point_Label = (TextView) findViewById(R.id.pointlabel);
+        TextView Point_Label = (TextView) findViewById(R.id.PointsLabel);
         TextView Points = (TextView) findViewById(R.id.points);
-        TextView TTLPoints_Label = (TextView) findViewById(R.id.ttl_points_lbl);
-        TextView TTLPoints = (TextView) findViewById(R.id.ttlpoints);
-        TextView Cur_Lev_Label = (TextView) findViewById(R.id.levellabel);
-        TextView Cur_Level = (TextView) findViewById(R.id.textView3);
+        TextView TTLPoints_Label = (TextView) findViewById(R.id.TotalPointsLabel);
+        TextView TTLPoints = (TextView) findViewById(R.id.ttlPoints);
+        TextView Cur_Lev_Label = (TextView) findViewById(R.id.LevelLabel);
+        TextView Cur_Level = (TextView) findViewById(R.id.IntLevel);
         Point_Label.setTypeface(newfont);
         Points.setTypeface(newfont);
         TTLPoints_Label.setTypeface(newfont);
@@ -90,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void timeup(Context context)
     {
-        TextView points = (TextView) findViewById(R.id.ttlpoints);
+        TextView points = (TextView) findViewById(R.id.ttlPoints);
         AlertDialog.Builder builder = new AlertDialog.Builder(
                 MainActivity.this);
         builder.setTitle("Times up!")
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     //Random Number Generator
     public int RandomNum(int currentlevel)
     {
-        TextView info = (TextView)findViewById(R.id.textView2);
+        TextView info = (TextView)findViewById(R.id.GameInfo);
         Random newran = new Random();
         //Modified The Range Tick Per Level To +2 Per Level Instead of + 10
         double maxd = (((currentlevel * 0.2) * 10) + 10);
@@ -125,11 +124,11 @@ public class MainActivity extends AppCompatActivity {
     public void ButtonGuess(View view)
     {
         ImageButton BlueButton = (ImageButton)findViewById(R.id.BlueButton);
-        TextView level = (TextView) findViewById(R.id.textView3);
-        TextView tv1 = (TextView) findViewById(R.id.textView);
+        TextView level = (TextView) findViewById(R.id.IntLevel);
+        TextView tv1 = (TextView) findViewById(R.id.GuessStatus);
         TextView pntVal = (TextView) findViewById(R.id.points);
-        EditText guess = (EditText) findViewById(R.id.editText);
-        TextView ttl = (TextView) findViewById(R.id.ttlpoints);
+        EditText guess = (EditText) findViewById(R.id.GuessField);
+        TextView ttl = (TextView) findViewById(R.id.ttlPoints);
         int currentexp = Integer.valueOf(pntVal.getText().toString());
         int currentlevel = Integer.valueOf(level.getText().toString());
         int ExpValue = ((currentlevel * 500) * 2);
@@ -159,6 +158,11 @@ public class MainActivity extends AppCompatActivity {
                 ttl.setText(String.valueOf(ttlpoints));
             }
         }
+        else if (String.valueOf(guess.getText()).equals(""))
+        {
+            tv1.setTextColor(Color.RED);
+            tv1.setText(R.string.emptyguess);
+        }
         else
         {
             tv1.setText("Your Guess Is Incorrect The Value Is " + cache.toString());
@@ -178,14 +182,24 @@ public class MainActivity extends AppCompatActivity {
     // Quick Guess Button Action (aka Auto Guess 10 Guesses Per Second For 20 Seconds)
     public void AutoGuess(View view)
     {
+        TextView tv1 = (TextView) findViewById(R.id.GuessStatus);
+        EditText guess = (EditText) findViewById(R.id.GuessField);
         boolean timerStarts = false;
         if(!timerStarts)
         {
             ImageButton AutoBtn = (ImageButton) findViewById(R.id.RedButton);
             //Comment Below Line Out For Quicker Testing / Fast Mode.
-            AutoBtn.setEnabled(false);
-            timer.start();
-            timerStarts = true;
+            if (String.valueOf(guess.getText()).equals(""))
+            {
+                tv1.setTextColor(Color.RED);
+                tv1.setText(R.string.emptyguess);
+            }
+            else
+            {
+                AutoBtn.setEnabled(false);
+                timer.start();
+                timerStarts = true;
+            }
         }
     }
     //Timer Is Used For Auto Guess Function Which Is Available After Every Manual Level Up
@@ -194,19 +208,20 @@ public class MainActivity extends AppCompatActivity {
     {
         public void onTick (long millisUntilFinished)
         {
-            TextView ttl = (TextView) findViewById(R.id.ttlpoints);
+            TextView ttl = (TextView) findViewById(R.id.ttlPoints);
             int ttlpoints = Integer.valueOf(ttl.getText().toString());
             ImageButton AutoBtn = (ImageButton) findViewById(R.id.RedButton);
-            TextView level = (TextView) findViewById(R.id.textView3);
-            TextView tv1 = (TextView) findViewById(R.id.textView);
+            TextView level = (TextView) findViewById(R.id.IntLevel);
+            TextView tv1 = (TextView) findViewById(R.id.GuessStatus);
             TextView pntVal = (TextView) findViewById(R.id.points);
-            EditText guess = (EditText) findViewById(R.id.editText);
+            EditText guess = (EditText) findViewById(R.id.GuessField);
             int currentexp = Integer.valueOf(pntVal.getText().toString());
             int currentlevel = Integer.valueOf(level.getText().toString());
             int ExpValue = ((currentlevel * 500) * 2);
             String cache = String.valueOf(RandomNum(currentlevel));
+            String resolved_guess = String.valueOf(guess.getText());
 
-            if (String.valueOf(guess.getText()).equals(cache)) {
+            if (resolved_guess.equals(cache)) {
                 if (currentexp > ExpValue) {
                     currentlevel += 1;
                     AutoBtn.setEnabled(true);
@@ -220,7 +235,6 @@ public class MainActivity extends AppCompatActivity {
                     int num2 = num + 100;
                     ttlpoints += 100;
                     pntVal.setTextColor(Color.GREEN);
-                    pntVal.setTextSize(18);
                     pntVal.setText(String.valueOf(num2));
                     ttl.setText(String.valueOf(ttlpoints));
                 }
@@ -234,7 +248,6 @@ public class MainActivity extends AppCompatActivity {
                     int num2 = num - 1;
                     ttlpoints -= 1;
                     pntVal.setTextColor(Color.RED);
-                    pntVal.setTextSize(14);
                     pntVal.setText(String.valueOf(num2));
                     ttl.setText(String.valueOf(ttlpoints));
                 }
@@ -245,7 +258,6 @@ public class MainActivity extends AppCompatActivity {
         {
             TextView pntVal = (TextView) findViewById(R.id.points);
             pntVal.setTextColor(Color.LTGRAY);
-            pntVal.setTextSize(16);
         }
     };
     //Build SoundPool For SoundEffects Excluding Background Music Which Is Handled Above With Media Player In The OnCreate Function

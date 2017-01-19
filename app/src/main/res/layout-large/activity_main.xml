@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/horizontal_line"
+        android:id="@+id/HorizontalBar"
+        android:scaleType="matrix"
+        android:scaleX="5"
+        tools:layout_editor_absoluteY="328dp"
+        tools:layout_editor_absoluteX="99dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/GuessField"
+        android:background="@android:drawable/edit_text"
+        tools:layout_editor_absoluteY="328dp"
+        tools:layout_editor_absoluteX="198dp" />
+
+    <ImageButton
+        app:srcCompat="@drawable/redselector"
+        android:id="@+id/RedButton"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        tools:layout_editor_absoluteY="466dp"
+        tools:layout_editor_absoluteX="299dp" />
+
+    <ImageButton
+        app:srcCompat="@drawable/blueselector"
+        android:id="@+id/BlueButton"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/RedButton"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="96dp"
+        android:layout_height="96dp" />
+
+    <TextView
+        android:text="Welcome To Number Guesser!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TopBannerLabel"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/Gray"
+        android:textColorLink="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintVertical_bias="0.03" />
+
+    <TextView
+        android:text="Please Guess A Number Between 1 and 10"
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/GameInfo"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/TopBannerLabel"
+        android:textColor="@color/Gray"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintVertical_bias="0.01" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/GuessStatus"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/GameInfo"
+        android:textColor="@color/Gray"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:text="@string/level_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/LevelLabel"
+        android:textColor="@color/Gray"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/IntLevel"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="@+id/IntLevel"
+        app:layout_constraintBottom_toBottomOf="@+id/IntLevel" />
+
+    <TextView
+        android:text="@string/cur_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/IntLevel"
+        android:textColor="@color/Gray"
+        app:layout_constraintBottom_toTopOf="@+id/points"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/GuessStatus"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:text="@string/point_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/PointsLabel"
+        android:textColor="@color/Gray"
+        tools:layout_editor_absoluteY="221dp"
+        tools:layout_editor_absoluteX="81dp" />
+
+    <TextView
+        android:text="@string/points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/points"
+        android:textColor="@color/Gray"
+        tools:layout_editor_absoluteY="221dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:text="@string/ttlpointsint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ttlPoints"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/points"
+        android:textColor="@color/Gray" />
+
+    <TextView
+        android:text="@string/ttl_points_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TotalPointsLabel"
+        android:textColor="@color/Gray"
+        app:layout_constraintTop_toTopOf="@+id/ttlPoints"
+        app:layout_constraintBottom_toBottomOf="@+id/ttlPoints"
+        app:layout_constraintRight_toLeftOf="@+id/ttlPoints"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.3" />
+
+    <TextView
+        android:text="@string/TimeLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TimeLeft"
+        android:textColor="@color/Gray"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/GameTimeInt"
+        app:layout_constraintBottom_toBottomOf="@+id/GameTimeInt"
+        app:layout_constraintRight_toLeftOf="@+id/GameTimeInt"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/GameTimeInt"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="@color/Gray"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/ttlPoints" />
+</android.support.constraint.ConstraintLayout>

@@ -7,7 +7,7 @@
     <color name="DarkRed">#CC0000</color>
     <color name="Green">#00FF00</color>
     <color name="DarkGreen">#00CC00</color>
-    <color name="Gray">#CCCCCC</color>
+    <color name="Gray">#cccccc</color>
     <color name="DarkGray">#444444</color>
     <color name="White">#FFFFFF</color>
 </resources>
