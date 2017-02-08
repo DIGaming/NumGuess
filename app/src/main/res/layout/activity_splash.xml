@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="427dp"
-        android:src="@drawable/logo"
-        android:id="@+id/imageView"
-        android:contentDescription="DIGaming Logo"
-        />
 
     <TextView
         android:text="@string/copyright"
@@ -18,4 +11,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView5"
         android:textAlignment="center" />
+
+    <ImageView
+        android:layout_height="match_parent"
+        android:src="@drawable/logo"
+        android:id="@+id/imageView"
+        android:contentDescription="DIGaming Logo"
+        android:scaleType="centerInside"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/DarkGray"
+        android:cropToPadding="true"
+        android:contextClickable="false"
+        android:baselineAlignBottom="false"
+        android:adjustViewBounds="true" />
+
 </LinearLayout>

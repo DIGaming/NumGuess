@@ -71,12 +71,16 @@ public class MainActivity extends AppCompatActivity {
         TextView TTLPoints = (TextView) findViewById(R.id.ttlPoints);
         TextView Cur_Lev_Label = (TextView) findViewById(R.id.LevelLabel);
         TextView Cur_Level = (TextView) findViewById(R.id.IntLevel);
+        TextView time_left = (TextView)findViewById(R.id.TimeLeft);
+        TextView time_left_int = (TextView)findViewById(R.id.GameTimeInt);
         Point_Label.setTypeface(newfont);
         Points.setTypeface(newfont);
         TTLPoints_Label.setTypeface(newfont);
         TTLPoints.setTypeface(newfont);
         Cur_Lev_Label.setTypeface(newfont);
         Cur_Level.setTypeface(newfont);
+        time_left.setTypeface(newfont);
+        time_left_int.setTypeface(newfont);
     }
 
     @Override
@@ -101,7 +105,12 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = getIntent();
+                        finish();
+                        }
+                })
                 .setCancelable(false);
 
         AlertDialog alert = builder.create();
